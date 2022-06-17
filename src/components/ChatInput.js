@@ -1,11 +1,13 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import firebase from "firebase/compat/app";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const ChatInput = ({ channelName, channelId, chatRef }) => {
   const [input, setInput] = useState("");
+  const [user] = useAuthState(auth);
 
   const sendMessage = (e) => {
     e.preventDefault(); //Prevens refresh
@@ -16,9 +18,9 @@ const ChatInput = ({ channelName, channelId, chatRef }) => {
     db.collection("rooms").doc(channelId).collection("messages").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: "Slack user",
+      user: user.displayName,
       userImage:
-        "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg",
+        user.photoURL,
     });
 
     chatRef?.current?.scrollIntoView({

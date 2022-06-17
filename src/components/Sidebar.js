@@ -13,22 +13,24 @@ import {
   PeopleAlt,
 } from "@mui/icons-material";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import styled from "styled-components";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import SidebarOption from "./SidebarOption";
 
 const Sidebar = () => {
   const [channels, loading, error] = useCollection(db.collection("rooms"));
-
+  const [user] = useAuthState(auth);
+  console.log(user);
   return (
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Hello, user</h2>
+          <h2>Hello, {user.displayName}</h2>
           <h3>
             <FiberManualRecord />
-            Viet Nam
+            Online
           </h3>
         </SidebarInfo>
         <Create />

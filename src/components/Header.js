@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { Avatar } from "@mui/material";
 import { AccessTime, Search, HelpOutline } from "@mui/icons-material";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
   return (
     <HeaderContainer>
       {/* {Header Left} */}
       <HeaderLeft>
-        <HeaderAvatar />
+        <HeaderAvatar onClick={()=>auth.signOut()} alt={user?.displayName} src={user?.photoURL} />
         <AccessTime />
       </HeaderLeft>
 
@@ -70,11 +73,11 @@ const HeaderLeft = styled.div`
 `;
 
 const HeaderRight = styled.div`
-flex:0.3;
-display:flex;
-align-items: flex-end;
-> .MuiSvgIcon-root {
-  margin-left: auto;
+  flex: 0.3;
+  display: flex;
+  align-items: flex-end;
+  > .MuiSvgIcon-root {
+    margin-left: auto;
     margin-right: 20px;
   }
 `;

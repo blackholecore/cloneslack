@@ -80,6 +80,8 @@ const ChatButton = styled.div`
 
 const Header = styled.div`
   display: flex;
+  background-color: #421f44;
+  color: white;
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid lightgray;
