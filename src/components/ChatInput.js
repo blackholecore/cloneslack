@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { db } from "../firebase";
 import firebase from "firebase/compat/app";
 
-const ChatInput = ({ channelName, channelId }) => {
+const ChatInput = ({ channelName, channelId, chatRef }) => {
   const [input, setInput] = useState("");
 
   const sendMessage = (e) => {
@@ -13,24 +13,28 @@ const ChatInput = ({ channelName, channelId }) => {
       return false;
     }
 
-    db.collection("rooms")
-      .doc(channelId)
-      .collection("messages")
-      .add({
-        message:input,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        user:"Slack user",
-        userImage:"https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg",
-      });
+    db.collection("rooms").doc(channelId).collection("messages").add({
+      message: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      user: "Slack user",
+      userImage:
+        "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg",
+    });
 
-      setInput('');
+    chatRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+
+    setInput("");
   };
   return (
     <ChatInputContainer>
       <form>
-        <input value={input}
-        onChange={(e)=>setInput(e.target.value)}
-         placeholder={`Message #${channelName}`} />
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder={`Message #${channelName}`}
+        />
         <Button hidden type="submit" onClick={sendMessage}>
           SEND
         </Button>
