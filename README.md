@@ -1,46 +1,62 @@
-# Getting Started with Create React App and Redux
+# Clone Slack App 
+Simple chat app 
+<img src="https://img.icons8.com/dotty/344/react.png" width="20" heigh="20"> ReactJS 
+app with 
+<img src="https://img.icons8.com/color/344/redux.png" width="20" heigh="20"> Redux,
+<img src="https://img.icons8.com/color/344/firebase.png" width="20" heigh="20"> Firebase.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+### [Live demo:](https://slackclone-d3bea.web.app/) https://slackclone-d3bea.web.app/
 
-## Available Scripts
+![](https://github.com/tranhakhanhduy/cloneslack/blob/master/assetsReadme/app.PNG)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Run Locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<details>
+  <summary>1. Install Dependencies</summary>
+  
+```sh
+$ npm install
+```
+  
+</details>
+  
+ <details>
+  <summary>2. Create a new firebase project</summary>
+Login to your google account and create a new firebase project [here](https://console.firebase.google.com/u/0/)
 
-### `npm test`
+Open `firebase.js` and add the following configuration details. You can either use the same configuration details for both development and production but it's best to make separate projects. It can be found on your firebase project settings.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+// SAMPLE CONFIG .firebase-config, you should put the actual config details found on your project settings
+  apiKey: "AIzaSyAxLNQP1wQtANxiKge84Okz-6ePtlp_U9Q",
+  authDomain: "slackclone-d3bea.firebaseapp.com",
+  projectId: "slackclone-d3bea",
+  storageBucket: "slackclone-d3bea.appspot.com",
+  messagingSenderId: "575920230609",
+  appId: "1:575920230609:web:d74c57c12d8b60e40735f0"
+``` 
 
-### `npm run build`
+After setting up necessary configuration,
+create a **Database** and choose **Cloud Firestore** and start in test mode
+</details>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+  <summary>3. Run development server</summary>
+  
+```sh 
+$ npm run dev-server
+```
+  
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+  <summary>4. Build the project</summary>
+  
+```sh
+$ npm run build
+```
+  
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
